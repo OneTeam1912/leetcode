@@ -1,0 +1,57 @@
+反转一个单链表。（不增加空间O（1））
+
+示例:
+
+输入: 1->2->3->4->5->NULL
+输出: 5->4->3->2->1->NULL
+/**
+*  就地逆转法
+*
+*/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode *New_head = NULL;  //指向新链表头节点的指针，就地逆值法
+        while(head){
+            ListNode *next = head->next;
+            head->next = New_head;
+            New_head = head;
+            head = next;
+        }
+        return New_head;
+    }
+};
+
+
+/**
+* 头插法
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* reverseList(ListNode* head) {
+        ListNode temp_head(0);          //头插法
+        while(head){
+            ListNode *next;
+            next = head->next;
+            head->next = temp_head.next;
+            temp_head.next = head;
+            head = next;
+        }
+        return temp_head.next;
+    }
+};
